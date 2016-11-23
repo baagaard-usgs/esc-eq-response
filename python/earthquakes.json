@@ -1,0 +1,62 @@
+{
+    "mainshock": {
+        "originTime": "2014-08-24T3:20:44",
+        "magnitude": 6.0,
+	"latitude": 38.215,
+	"longitude": -122.312,
+        "depth": 11.1
+    },
+    "aftershocks": [
+	{
+	    "originTime": "2014-08-24T3:21:45",
+	    "magnitude": 3.8,
+	    "latitude": 38.235,
+	    "longitude": -122.320,
+	    "depth": 9.1
+	},
+	{
+	    "originTime": "2014-08-24T3:24:44",
+	    "magnitude": 3.5,
+	    "latitude": 38.260,
+	    "longitude": -122.337,
+	    "depth": 10.5
+	},
+	{
+	    "originTime": "2014-08-24T5:47:12",
+	    "magnitude": 3.6,
+	    "latitude": 38.238,
+	    "longitude": -122.342,
+	    "depth": 8.5
+	},
+	{
+	    "originTime": "2014-08-24T5:33:16",
+	    "magnitude": 3.9,
+	    "latitude": 38.179,
+	    "longitude": -122.301,
+	    "depth": 12.6
+	},
+	{
+	    "originTime": "2014-08-26T4:33:22",
+	    "magnitude": 3.7,
+	    "latitude": 38.166,
+	    "longitude": -122.300,
+	    "depth": 10.4
+	},
+	{
+	    "originTime": "2014-08-31T1:56:20",
+	    "magnitude": 3.2,
+	    "latitude": 38.236,
+	    "longitude": -122.328,
+	    "depth": 9.6
+	}
+    ],
+    "historical": [
+	{
+	    "originTime": "2000-09-03T8:36:30",
+	    "magnitude": 5.0,
+	    "latitude": 38.379,
+	    "longitude": -122.413,
+	    "depth": 10.2
+	}
+    ]
+}
