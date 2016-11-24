@@ -1,33 +1,36 @@
 #!/usr/bin/env python
 
 import argparse
+import datetime
 
 from Seismicity import Seismicity
 from PlotMagTime import PlotMagTime
-from PlotXSections import PlotXSections
+#from .PlotXSections import PlotXSections
 
 # ----------------------------------------------------------------------
-class App:
+class PlotApp:
 
     def __init__(self, earthquakes):
         """
         Constructor.
         """
-        self.seismicity = Seismicity(earthquakes)
+        self.seismicity = Seismicity(earthquakes, format="json")
+        self.now = datetime.datetime.utcnow()
         return
 
 
-    def plotTime(self):
-        figure = PlotMagTime()
+    def plot_time(self):
+        figure = PlotMagTime(self.now)
         figure.plot(self.seismicity)
         figure.save("mag_time.png")
         return
 
 
-    def plotXSections(self):
-        figure = PlotXSections()
-        figure.plot(self.seismicity)
-        figure.save("xsections.png")
+    def plot_xsections(self):
+        self.project()
+        #figure = PlotXSections()
+        #figure.plot(self.seismicity)
+        #figure.save("xsections.png")
         return
 
 
@@ -36,11 +39,10 @@ class App:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--earthquakes", action="store", dest="earthquakes")
-    parser.add_argument("--plot-time", actions="store_true", dest="plotTime")
-    parser.add_argument("--plot_xsections", actions="store_true", dest="plotXSections")
+    parser.add_argument("--plot-time", action="store_true", dest="plotTime")
+    parser.add_argument("--plot_xsections", action="store_true", dest="plotXSections")
     args = parser.parse_args()
 
-    app = App()
     if args.earthquakes:
         import json
         seismicity = json.loads(args.earthquakes)
@@ -49,11 +51,13 @@ if __name__ == "__main__":
         with open("earthquakes.json", "r") as fin:
             seismicity = json.load(fin)
 
+    app = PlotApp(seismicity)
+
     if args.plotTime:
-        app.plotTime()
+        app.plot_time()
 
     if args.plotXSections:
-        app.plotXSections()
+        app.plot_xsections()
 
 
 # End of file
