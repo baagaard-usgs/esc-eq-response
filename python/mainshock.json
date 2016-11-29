@@ -1,0 +1,28 @@
+{
+    "id":"nc72282711",
+    "geometry":{
+	"type":"Point",
+	"coordinates":[-122.3123333,38.2151667,11.12]
+    },
+    "metadata":{
+	"generated":1480374950635,
+	"title":"Mainshock"
+    },
+    "properties":{
+	"alert":"red",
+	"cdi":8.4,
+	"features":{
+	    "shakemap_mmi":"http://earthquake.usgs.gov/archive/product/shakemap/nc72282711/nc/1431987323474/download/cont_mi.json"
+	},
+	"felt":41359,
+	"mag":6.02,
+	"magType":"mw",
+	"mmi":8.72,
+	"place":"South Napa Earthquake",
+	"status":"reviewed",
+	"time":1408875644070,
+	"tz":-420,
+	"updated":1470759871095,
+	"url":"http://earthquake.usgs.gov/earthquakes/eventpage/nc72282711"
+    },"type":"Feature"
+}
