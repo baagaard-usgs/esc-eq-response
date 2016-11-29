@@ -25,11 +25,6 @@ class Mainshock(object):
         earthquake: Object containing mainshock information.
         format: Format defining layout of object.
         """
-        if format == "geojson":
-            self._from_geojson(earthquake)
-        else:
-            raise ValueError("Unknown format '%s'." % format)
-
         self.originTime = None
         self.magnitude = None
         self.longitude = None
@@ -37,6 +32,11 @@ class Mainshock(object):
         self.depth = None
         self.x = None
         self.y = None
+
+        if format == "geojson":
+            self._from_geojson(earthquake)
+        else:
+            raise ValueError("Unknown format '%s'." % format)
         return
 
     def project(self):
@@ -82,11 +82,6 @@ class Catalog(object):
         earthquakes: Object containing earthquake information.
         format: Format defining layout of earthquke information.
         """
-        if format == "geojson":
-            self._from_geojson(earthquakes)
-        else:
-            raise ValueError("Unknown format '%s'." % format)
-
         self.count = None
         self.originTime = None
         self.magnitude = None
@@ -95,6 +90,11 @@ class Catalog(object):
         self.depth = None
         self.x = None
         self.y = None
+
+        if format == "geojson":
+            self._from_geojson(earthquakes)
+        else:
+            raise ValueError("Unknown format '%s'." % format)
         return
 
     def project(self, proj):
