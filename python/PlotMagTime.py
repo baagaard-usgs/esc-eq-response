@@ -1,8 +1,11 @@
+"""
+Create plot of earthquake magnitude versus time using Matplotlib.
+"""
+
 import pytz
 import numpy
 
-import matplotlib.pyplot as pyplot
-from matplotlib.dates import AutoDateLocator, AutoDateFormatter, DateFormatter, date2num
+from matplotlib.dates import AutoDateLocator, DateFormatter, date2num
 
 from Figure import Figure
 
@@ -10,19 +13,35 @@ DAY_TO_SECS = 24*3600.0
 YEAR_TO_SECS = 365.25*DAY_TO_SECS
 
 class PlotMagTime(Figure):
+    """
+    Figure with earthquake magnitude versus time.
+    """
 
     def __init__(self, now):
+        """
+        Constructor.
+
+        Parameters
+        ----------
+        now: Timestamp of plot.
+        """
         Figure.__init__(self, color="lightbg", fontsize=10)
         self.tz = pytz.timezone("UTC")
         self.now = now
         return
 
     def plot(self, seismicity):
+        """
+        Generate plot.
+
+        Parameters
+        ----------
+        seismicity: Seismicity to plot.
+        """
         if seismicity.aftershocks.count:
             duration = seismicity.aftershocks.originTime[-1] - seismicity.mainshock.originTime
         else:
             duration = DAY_TO_SECS
-        ndays = int(duration/DAY_TO_SECS)
         if duration <= 5*DAY_TO_SECS:
             formatter = DateFormatter("%b %d %H:%M", self.tz)
             locator = AutoDateLocator(maxticks=7)
@@ -73,16 +92,30 @@ class PlotMagTime(Figure):
         ax.set_title("Cumulative # of Aftershocks", fontweight="bold")
 
         return
-                
+
     def save(self, filename):
+        """
+        Save plot to file.
+
+        Parameters
+        ----------
+        filename: Filename for plot.
+        """
         self.figure.savefig(filename)
         return
 
-        
     def _plot_events(self, ax, catalog, color=None):
+        """
+        Plot catalog of earthquakes.
+
+        Parameters
+        ----------
+        ax: Axis to add earthquakes to.
+        catalog: Catalog of earthquakes.
+        color: Color for earthquake markers.
+        """
         msize = self._marker_size(catalog)
         if color is None:
-            from matplotlib.dates import date2num
             age = date2num(self.now)-catalog.originTime
             #age = 5*numpy.ones(t.shape) # force yellow
             ax.scatter(
@@ -111,8 +144,11 @@ class PlotMagTime(Figure):
 
 
     def _marker_size(self, catalog):
+        """
+        Compute size of earthquake marker.
+        """
         size = 2**(catalog.magnitude-1)
         return size
 
-    
+
 # End of file
