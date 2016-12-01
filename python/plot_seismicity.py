@@ -9,7 +9,7 @@ import json
 
 from Seismicity import Seismicity
 from PlotMagTime import PlotMagTime
-#from .PlotXSections import PlotXSections
+from PlotXSections import PlotXSections
 
 # ----------------------------------------------------------------------
 class PlotApp(object):
@@ -25,6 +25,7 @@ class PlotApp(object):
         """
         self.seismicity = earthquakes
         self.now = datetime.datetime.utcnow()
+        self.faultStrikeDeg = 155.0
         return
 
     def plot_time(self):
@@ -43,9 +44,9 @@ class PlotApp(object):
 
         """
         self.seismicity.project()
-        #figure = PlotXSections()
-        #figure.plot(self.seismicity)
-        #figure.save("xsections.png")
+        figure = PlotXSections(self.now, self.faultStrikeDeg)
+        figure.plot(self.seismicity)
+        figure.save("xsections.png")
         return
 
 
@@ -69,7 +70,7 @@ if __name__ == "__main__":
     parser.add_argument("--aftershocks", action="store", dest="aftershocks")
     parser.add_argument("--historical", action="store", dest="historical")
     parser.add_argument("--plot-time", action="store_true", dest="plotTime")
-    parser.add_argument("--plot_xsections", action="store_true", dest="plotXSections")
+    parser.add_argument("--plot-xsections", action="store_true", dest="plotXSections")
     args = parser.parse_args()
 
     mainshock = load_catalog(args.mainshock, "mainshock.json")
