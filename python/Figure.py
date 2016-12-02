@@ -93,7 +93,7 @@ class Figure(object):
         return
 
 
-    def axes(self, nrows, ncols, row, col, hide=False):
+    def axes(self, nrows, ncols, row, col, hide=False, **kwargs):
         """
         Create subplot in figure.
         """
@@ -119,7 +119,7 @@ class Figure(object):
         top = bottom + plotH / height
         #print "left: %.4f, right: %.4f, top: %.4f, bottom: %.4f, width: %.4f, height: %.4f" % \
         #      (left, right, top, bottom, plotW/w, plotH/h)
-        axes = self.figure.add_axes([left, bottom, plotW/width, plotH/height], axisbg='bg')
+        axes = self.figure.add_axes([left, bottom, plotW/width, plotH/height], axisbg='bg', **kwargs)
 
         if hide:
             axes.set_frame_on(False)
